@@ -1,8 +1,8 @@
 ##grflangid 0x01
 
 # GRF name and description
-STR_GRF_NAME	:DSB - Danish Train Set
-STR_GRF_DESC	:{RED}DSB Danish Train Set{}{BLACK} By {SILVER} Jeppe Burchardt
+STR_GRF_NAME	:Danish Vehicle Set
+STR_GRF_DESC	:Danish Vehicle set. This is a fork of {RED}DSB Danish Train Set{}{BLACK} By {SILVER} Jeppe Burchardt. This fork is made by Emil Wismann, and is meant to be a collection of danish trains. Source Code: https://github.com/emilwkj/Openttd-Danish-Vehicle-Set
 
 
 # engines
