@@ -7,17 +7,19 @@ item(FEAT_TRAINS, item_train_engine_mz) {
 		climates_available: 	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
 		introduction_date: 		date(1968, 1, 1);
 		model_life: 			VEHICLE_NEVER_EXPIRES;
-		vehicle_life: 			30;
+		vehicle_life: 			25;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.28;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_DIESEL;
 		running_cost_base:		RUNNING_COST_DIESEL;
+		running_cost_factor:	125;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			30;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					165 km/h;
 		power:					3900;

@@ -46,14 +46,11 @@ spriteset(set_ab, "gfx/b-ab.png") { tmpl_vehicle_8_views(1, 0) }
 spriteset(set_b, "gfx/b-ab.png") { tmpl_vehicle_4_views(0) }
 // CM sprites
 spriteset(set_cm, "gfx/cm.png") { tmpl_vehicle_4_views(0) }
-
-// CM purchase
-spriteset(set_cm_purchase, "gfx/cm.png") { tmpl_vehicle_single(1, 32, 13, 0, -7) }
 // FC sprites
 spriteset(set_fc, "gfx/fc.png") { tmpl_vehicle_8_views(0, 0) }
 
 // FC purchase
-spriteset(set_fc_purchase, "gfx/fc.png") { tmpl_vehicle_single(1, 27, 14, 0, -7) }
+spriteset(set_fc_purchase, "gfx/fc.png") { tmpl_vehicle_single(1, 27, 14, -14, -7) }
 // MFA
 spriteset(set_mfa, "gfx/ic3.png") { tmpl_vehicle_8_views(0, 0) }
 
@@ -64,11 +61,12 @@ spriteset(set_mfb, "gfx/ic3.png") { tmpl_vehicle_8_views(1, 0) }
 spriteset(set_ff, "gfx/ic3.png") { tmpl_vehicle_4_views(2) }
 
 // IC3 purchase
-spriteset(set_ic3_purchase, "gfx/ic3.png") { tmpl_vehicle_single(3, 93, 14, -30, -7) }
+spriteset(set_ic3_purchase, "gfx/ic3.png") { tmpl_vehicle_single(3, 93, 14, -45, -7) }
 
 // IC3 articulated train (MFA-FF-MFB)
 switch(FEAT_TRAINS, SELF, sw_ic3_articulated_part, extra_callback_info1) {
-	1 .. 2: return item_train_engine_ic3;
+	1: return item_train_ic3_mid;
+	2: return item_train_ic3_end;
     return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
 }
 switch(FEAT_TRAINS, SELF, sw_ic3_start_stop, num_vehs_in_consist) {
@@ -79,6 +77,7 @@ switch(FEAT_TRAINS, SELF, sw_ic3_can_attach_wagon, vehicle_type_id) {
 	item_train_engine_ic3: return CB_RESULT_ATTACH_ALLOW;
 	return string(STR_IC3_CANNOT_ATTACH_OTHER);
 }
+
 switch(FEAT_TRAINS, SELF, sw_ic3_default, position_in_consist % 3) {
 	0:      set_mfa;
     2:      set_mfb;
@@ -90,7 +89,7 @@ spriteset(set_k, "gfx/k.png") { tmpl_vehicle_8_views(0, 0) }
 spriteset(set_k_tender, "gfx/k.png") { tmpl_vehicle_8_views(1, 0) }
 
 // K purchase
-spriteset(set_k_purchase, "gfx/k.png") { tmpl_vehicle_single(2, 36, 11, -30, -7) }
+spriteset(set_k_purchase, "gfx/k.png") { tmpl_vehicle_single(2, 36, 11, -17, -7) }
 
 // default graphics
 switch(FEAT_TRAINS, SELF, sw_k_default, position_in_consist % 2) {
@@ -210,182 +209,122 @@ item(FEAT_TRAINS, item_wagon_ab) {
 	property {
 		name: string(ITEM_NAME_AB);
 		climates_available: 	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
-
         
 		introduction_date: 		date(1983, 1, 1);
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 
 		track_type:				RAIL;
 		weight:					37 ton;
-		speed:					160 km/h;
 		default_cargo_type:		PASS;
-		power: 					0 hp;
-		cargo_age_period: 185;
+		cargo_age_period: 		185;
 
 		cargo_capacity:			64;
 		length:					8;
 
-		cost_factor: 			2;
+		cost_factor: 			250;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 
-		extra_weight_per_wagon: 0 ton;
-		bitmask_vehicle_info:   0;
-		tractive_effort_coefficient: 0.3;
-        air_drag_coefficient: 0;
+ 		running_cost_base: 		RUNNING_COST_NONE;
 
         ai_special_flag: AI_FLAG_PASSENGER;
-        running_cost_base: RUNNING_COST_DIESEL;
-        engine_class: ENGINE_CLASS_DIESEL;
         visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, DISABLE_WAGON_POWER);
-
-		dual_headed: 0;
-        length: 8;
-        extra_power_per_wagon: 0;
-        bitmask_vehicle_info: 0;
-
 	}
 
 	graphics {
 		default:				set_ab;
 	}
-}
-// B
+}// B
 item(FEAT_TRAINS, item_wagon_b) {
 
 	property {
 		name: string(ITEM_NAME_B);
 		climates_available: 	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
-
         
 		introduction_date: 		date(1983, 1, 1);
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 
 		track_type:				RAIL;
 		weight:					37 ton;
-		speed:					160 km/h;
 		default_cargo_type:		PASS;
-		power: 					0 hp;
 		cargo_age_period: 185;
 
 		cargo_capacity:			64;
 		length:					8;
 
-		cost_factor: 			2;
+		cost_factor: 			250;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 
-		extra_weight_per_wagon: 0 ton;
-		bitmask_vehicle_info:   0;
-		tractive_effort_coefficient: 0.3;
-        air_drag_coefficient: 0;
+ 		running_cost_base: 		RUNNING_COST_NONE;
 
         ai_special_flag: AI_FLAG_PASSENGER;
-        running_cost_base: RUNNING_COST_DIESEL;
-        engine_class: ENGINE_CLASS_DIESEL;
         visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, DISABLE_WAGON_POWER);
-
-		dual_headed: 0;
-        length: 8;
-        extra_power_per_wagon: 0;
-        bitmask_vehicle_info: 0;
-
 	}
 
 	graphics {
 		default:				set_b;
 	}
-}
-// FC
+}// FC
 item(FEAT_TRAINS, item_wagon_cm) {
 
 	property {
 		name: string(ITEM_NAME_CM);
 		climates_available: 	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
-
         
 		introduction_date: 		date(1913, 1, 1);
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 
 		track_type:				RAIL;
 		weight:					35 ton;
-		speed:					80 km/h;
 		default_cargo_type:		PASS;
-		power: 					0 hp;
 		cargo_age_period: 		185;
 
 		cargo_capacity:			72;
 		length:					8;
 
-		cost_factor: 			2;
+		cost_factor: 			250;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 
-		extra_weight_per_wagon: 0 ton;
-		bitmask_vehicle_info:   0;
-		tractive_effort_coefficient: 0.3;
-        air_drag_coefficient: 0;
+		running_cost_base: 		RUNNING_COST_NONE;
 
         ai_special_flag: AI_FLAG_PASSENGER;
-        running_cost_base: RUNNING_COST_DIESEL;
-        engine_class: ENGINE_CLASS_DIESEL;
         visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, DISABLE_WAGON_POWER);
-
-		dual_headed: 0;
-        length: 8;
-        extra_power_per_wagon: 0;
-        bitmask_vehicle_info: 0;
-
 	}
 
 	graphics {
 		default:				set_cm;
-		purchase:				set_cm_purchase;
 	}
-}
-// FC
+}// FC
 item(FEAT_TRAINS, item_wagon_fc) {
 
 	property {
 		name: string(ITEM_NAME_FC);
 		climates_available: 	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
-
         
 		introduction_date: 		date(1927, 1, 1);
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 
 		track_type:				RAIL;
 		weight:					13 ton;
-		speed:					80 km/h;
 		default_cargo_type:		PASS;
-		power: 					0 hp;
 		cargo_age_period: 		185;
 
 		cargo_capacity:			58;
 		length:					6;
 
-		cost_factor: 			2;
+		cost_factor: 			250;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 
-		extra_weight_per_wagon: 0 ton;
-		bitmask_vehicle_info:   0;
-		tractive_effort_coefficient: 0.3;
-        air_drag_coefficient: 0;
+ 		running_cost_base: 		RUNNING_COST_NONE;
 
         ai_special_flag: AI_FLAG_PASSENGER;
-        running_cost_base: RUNNING_COST_DIESEL;
-        engine_class: ENGINE_CLASS_DIESEL;
         visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, DISABLE_WAGON_POWER);
-
-		dual_headed: 0;
-        extra_power_per_wagon: 0;
-        bitmask_vehicle_info: 0;
-
 	}
 
 	graphics {
 		default:				set_fc;
 		purchase:				set_fc_purchase;
 	}
-}
-item(FEAT_TRAINS, item_train_engine_ic3) {
+}item(FEAT_TRAINS, item_train_engine_ic3) {
 	
 	property {
 		name: string(ITEM_NAME_IC3);
@@ -395,21 +334,25 @@ item(FEAT_TRAINS, item_train_engine_ic3) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
-
+		tractive_effort_coefficient: 0.35;
+		
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_DIESEL;
 		running_cost_base:		RUNNING_COST_DIESEL;
+		running_cost_factor:	150;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			20;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					180 km/h;
 		power:					1500;
 		weight:					95 ton;
 		air_drag_coefficient: 	0.06;
 
+		default_cargo_type:		PASS;
+		cargo_capacity:			50;
 		extra_weight_per_wagon: 0 ton;
 		bitmask_vehicle_info:   0;
 
@@ -424,6 +367,47 @@ item(FEAT_TRAINS, item_train_engine_ic3) {
 		default:				sw_ic3_default;
 	}
 }// K
+// Midtervogn (FF)
+item(FEAT_TRAINS, item_train_ic3_mid) {
+    property {
+        name: string(ITEM_NAME_IC3_MID);
+        default_cargo_type: PASS;
+        cargo_capacity: 60;                 // realistisk antal
+        power: 0;
+        weight: 35 ton;
+        running_cost_base: RUNNING_COST_NONE;
+        running_cost_factor: 0;
+		length: 8;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		track_type:				RAIL;
+		engine_class: ENGINE_CLASS_DIESEL;
+    }
+
+	graphics {
+		default:				sw_ic3_default;
+	}
+}
+
+// Bagvogn (MFB)
+item(FEAT_TRAINS, item_train_ic3_end) {
+    property {
+        name: string(ITEM_NAME_IC3_END);
+        default_cargo_type: PASS;
+        cargo_capacity: 40;
+        power: 0;
+        weight: 30 ton;
+        running_cost_base: RUNNING_COST_NONE;
+        running_cost_factor: 0;
+		length: 8;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		track_type:				RAIL;
+		engine_class: ENGINE_CLASS_DIESEL;
+    }
+
+	graphics {
+		default:				sw_ic3_default;
+	}
+}//K
 item(FEAT_TRAINS, item_train_engine_k) {
 	
 	property {
@@ -434,15 +418,17 @@ item(FEAT_TRAINS, item_train_engine_k) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.35;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_STEAM;
 		running_cost_base:		RUNNING_COST_STEAM;
+		running_cost_factor:	140;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			6;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					90 km/h;
 		power:					165;
@@ -461,8 +447,7 @@ item(FEAT_TRAINS, item_train_engine_k) {
 		default:					sw_k_default;
 		visual_effect_and_powered:	sw_k_visual_effect_and_powered;
 	}
-}
-// ME
+}// ME
 item(FEAT_TRAINS, item_train_engine_me) {
 	
 	property {
@@ -473,15 +458,17 @@ item(FEAT_TRAINS, item_train_engine_me) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.27;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_DIESEL;
 		running_cost_base:		RUNNING_COST_DIESEL;
+		running_cost_factor:	115;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			28;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					175 km/h;
 		power:					3300;
@@ -497,8 +484,7 @@ item(FEAT_TRAINS, item_train_engine_me) {
 	graphics {
 		default:				set_me_lighted;
 	}
-}
-// MY
+}// MO
 item(FEAT_TRAINS, item_train_engine_mo) {
 	
 	property {
@@ -509,15 +495,17 @@ item(FEAT_TRAINS, item_train_engine_mo) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.33;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_DIESEL;
 		running_cost_base:		RUNNING_COST_DIESEL;
+		running_cost_factor:	200;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			10;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					120 km/h;
 		power:					500 hp;
@@ -533,8 +521,7 @@ item(FEAT_TRAINS, item_train_engine_mo) {
 	graphics {
 		default:				set_mo;
 	}
-}
-// MY
+}// MY
 item(FEAT_TRAINS, item_train_engine_my) {
 	
 	property {
@@ -545,15 +532,17 @@ item(FEAT_TRAINS, item_train_engine_my) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.30;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_DIESEL;
 		running_cost_base:		RUNNING_COST_DIESEL;
+		running_cost_factor:	120;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			18;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					133 km/h;
 		power:					1950;
@@ -569,8 +558,7 @@ item(FEAT_TRAINS, item_train_engine_my) {
 	graphics {
 		default:				sw_my_graphics;
 	}
-}
-// MZ
+}// MZ
 item(FEAT_TRAINS, item_train_engine_mz) {
 	
 	property {
@@ -579,17 +567,19 @@ item(FEAT_TRAINS, item_train_engine_mz) {
 		climates_available: 	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
 		introduction_date: 		date(1968, 1, 1);
 		model_life: 			VEHICLE_NEVER_EXPIRES;
-		vehicle_life: 			30;
+		vehicle_life: 			25;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.28;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_DIESEL;
 		running_cost_base:		RUNNING_COST_DIESEL;
+		running_cost_factor:	125;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			30;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					165 km/h;
 		power:					3900;
@@ -605,8 +595,7 @@ item(FEAT_TRAINS, item_train_engine_mz) {
 	graphics {
 		default:				sw_mz_graphics;
 	}
-}
-// N mark III
+}// N mark III
 item(FEAT_TRAINS, item_train_engine_n) {
 	
 	property {
@@ -617,15 +606,18 @@ item(FEAT_TRAINS, item_train_engine_n) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.32;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_STEAM;
 		running_cost_base:		RUNNING_COST_STEAM;
+		running_cost_factor:	130;
+
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			13;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					110 km/h;
 		power:					1000 hp;
@@ -644,8 +636,7 @@ item(FEAT_TRAINS, item_train_engine_n) {
 		default:					sw_n_default;
 		visual_effect_and_powered:	sw_n_visual_effect_and_powered;
 	}
-}
-item(FEAT_TRAINS, item_train_engine_stog2) {
+}item(FEAT_TRAINS, item_train_engine_stog2) {
 	
 	property {
 		name: string(ITEM_NAME_STOG2);
@@ -655,15 +646,17 @@ item(FEAT_TRAINS, item_train_engine_stog2) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.38;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_ELECTRIC;
 		running_cost_base:		RUNNING_COST_ELECTRIC;
+		running_cost_factor:	70;
 		dual_headed:			0;
 		length:					6;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			35;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					180 km/h;
 		power:					1500;

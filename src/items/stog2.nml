@@ -8,15 +8,17 @@ item(FEAT_TRAINS, item_train_engine_stog2) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.38;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_ELECTRIC;
 		running_cost_base:		RUNNING_COST_ELECTRIC;
+		running_cost_factor:	70;
 		dual_headed:			0;
 		length:					6;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			35;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					180 km/h;
 		power:					1500;

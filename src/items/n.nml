@@ -9,15 +9,18 @@ item(FEAT_TRAINS, item_train_engine_n) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.32;
 
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_STEAM;
 		running_cost_base:		RUNNING_COST_STEAM;
+		running_cost_factor:	130;
+
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			13;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					110 km/h;
 		power:					1000 hp;

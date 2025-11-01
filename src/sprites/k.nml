@@ -5,7 +5,7 @@ spriteset(set_k, "gfx/k.png") { tmpl_vehicle_8_views(0, 0) }
 spriteset(set_k_tender, "gfx/k.png") { tmpl_vehicle_8_views(1, 0) }
 
 // K purchase
-spriteset(set_k_purchase, "gfx/k.png") { tmpl_vehicle_single(2, 36, 11, -30, -7) }
+spriteset(set_k_purchase, "gfx/k.png") { tmpl_vehicle_single(2, 36, 11, -17, -7) }
 
 // default graphics
 switch(FEAT_TRAINS, SELF, sw_k_default, position_in_consist % 2) {

@@ -16,6 +16,8 @@ ITEM_NAME_N		:Class N Mk III (Steam)
 # sets
 ITEM_NAME_STOG2	:S-train 2nd gen (Electric)
 ITEM_NAME_IC3	:IC3 Inter City (Diesel)
+ITEM_NAME_IC3_MID : "IC3 mid car"
+ITEM_NAME_IC3_END : "IC3 end car"
 
 # wagons
 ITEM_NAME_B		:Class B (I)

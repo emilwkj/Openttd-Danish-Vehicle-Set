@@ -8,11 +8,12 @@ spriteset(set_mfb, "gfx/ic3.png") { tmpl_vehicle_8_views(1, 0) }
 spriteset(set_ff, "gfx/ic3.png") { tmpl_vehicle_4_views(2) }
 
 // IC3 purchase
-spriteset(set_ic3_purchase, "gfx/ic3.png") { tmpl_vehicle_single(3, 93, 14, -30, -7) }
+spriteset(set_ic3_purchase, "gfx/ic3.png") { tmpl_vehicle_single(3, 93, 14, -45, -7) }
 
 // IC3 articulated train (MFA-FF-MFB)
 switch(FEAT_TRAINS, SELF, sw_ic3_articulated_part, extra_callback_info1) {
-	1 .. 2: return item_train_engine_ic3;
+	1: return item_train_ic3_mid;
+	2: return item_train_ic3_end;
     return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
 }
 switch(FEAT_TRAINS, SELF, sw_ic3_start_stop, num_vehs_in_consist) {
@@ -23,6 +24,7 @@ switch(FEAT_TRAINS, SELF, sw_ic3_can_attach_wagon, vehicle_type_id) {
 	item_train_engine_ic3: return CB_RESULT_ATTACH_ALLOW;
 	return string(STR_IC3_CANNOT_ATTACH_OTHER);
 }
+
 switch(FEAT_TRAINS, SELF, sw_ic3_default, position_in_consist % 3) {
 	0:      set_mfa;
     2:      set_mfb;

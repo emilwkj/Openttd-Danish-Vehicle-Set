@@ -1,5 +1,2 @@
 // CM sprites
 spriteset(set_cm, "gfx/cm.png") { tmpl_vehicle_4_views(0) }
-
-// CM purchase
-spriteset(set_cm_purchase, "gfx/cm.png") { tmpl_vehicle_single(1, 32, 13, 0, -7) }

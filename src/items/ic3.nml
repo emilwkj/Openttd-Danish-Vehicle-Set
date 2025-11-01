@@ -8,21 +8,25 @@ item(FEAT_TRAINS, item_train_engine_ic3) {
 		model_life: 			VEHICLE_NEVER_EXPIRES;
 		vehicle_life: 			30;
 		reliability_decay: 		20;
-
+		tractive_effort_coefficient: 0.35;
+		
 		track_type:				RAIL;
 		engine_class:			ENGINE_CLASS_DIESEL;
 		running_cost_base:		RUNNING_COST_DIESEL;
+		running_cost_factor:	150;
 		dual_headed:			0;
 		length:					8;
 
 		loading_speed: 			6;
-		cost_factor: 			2;
+		cost_factor: 			20;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		speed: 					180 km/h;
 		power:					1500;
 		weight:					95 ton;
 		air_drag_coefficient: 	0.06;
 
+		default_cargo_type:		PASS;
+		cargo_capacity:			50;
 		extra_weight_per_wagon: 0 ton;
 		bitmask_vehicle_info:   0;
 
@@ -34,6 +38,47 @@ item(FEAT_TRAINS, item_train_engine_ic3) {
 		articulated_part:		sw_ic3_articulated_part;
 		start_stop:				sw_ic3_start_stop;
 		can_attach_wagon:		sw_ic3_can_attach_wagon;
+		default:				sw_ic3_default;
+	}
+}// K
+// Midtervogn (FF)
+item(FEAT_TRAINS, item_train_ic3_mid) {
+    property {
+        name: string(ITEM_NAME_IC3_MID);
+        default_cargo_type: PASS;
+        cargo_capacity: 60;                 // realistisk antal
+        power: 0;
+        weight: 35 ton;
+        running_cost_base: RUNNING_COST_NONE;
+        running_cost_factor: 0;
+		length: 8;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		track_type:				RAIL;
+		engine_class: ENGINE_CLASS_DIESEL;
+    }
+
+	graphics {
+		default:				sw_ic3_default;
+	}
+}
+
+// Bagvogn (MFB)
+item(FEAT_TRAINS, item_train_ic3_end) {
+    property {
+        name: string(ITEM_NAME_IC3_END);
+        default_cargo_type: PASS;
+        cargo_capacity: 40;
+        power: 0;
+        weight: 30 ton;
+        running_cost_base: RUNNING_COST_NONE;
+        running_cost_factor: 0;
+		length: 8;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		track_type:				RAIL;
+		engine_class: ENGINE_CLASS_DIESEL;
+    }
+
+	graphics {
 		default:				sw_ic3_default;
 	}
 }
