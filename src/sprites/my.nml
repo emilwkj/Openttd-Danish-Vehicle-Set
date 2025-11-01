@@ -3,7 +3,7 @@ spriteset(set_my_wine, "gfx/diesel.png") { tmpl_vehicle_8_views(3, 0) }
 spriteset(set_my_80, "gfx/diesel.png") { tmpl_vehicle_8_views(0, 0) }
 
 
-switch(FEAT_TRAINS, SELF, sw_my_graphics, build_year + (age_in_days / 365)) {
+switch(FEAT_TRAINS, SELF, sw_my_graphics, build_year) {
 	0..1979:	return set_my_wine;
 	set_my_80;
 }

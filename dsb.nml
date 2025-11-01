@@ -51,19 +51,51 @@ spriteset(set_fc, "gfx/fc.png") { tmpl_vehicle_8_views(0, 0) }
 
 // FC purchase
 spriteset(set_fc_purchase, "gfx/fc.png") { tmpl_vehicle_single(1, 27, 14, -14, -7) }
-// MFA
-spriteset(set_mfa, "gfx/ic3.png") { tmpl_vehicle_8_views(0, 0) }
+// === IC3 farveskift baseret på år ===
 
-// MFB
-spriteset(set_mfb, "gfx/ic3.png") { tmpl_vehicle_8_views(1, 0) }
+// Ny (efter 2004)
+spriteset(set_ic3_new_mfa, "gfx/ic3.png") { tmpl_vehicle_8_views(0, 0) }
+spriteset(set_ic3_new_mfb, "gfx/ic3.png") { tmpl_vehicle_8_views(1, 0) }
+spriteset(set_ic3_new_ff,  "gfx/ic3.png") { tmpl_vehicle_4_views(2) }
+spriteset(set_ic3_new_purchase, "gfx/ic3.png") { tmpl_vehicle_single(3, 93, 14, -45, -7) }
 
-// MF
-spriteset(set_ff, "gfx/ic3.png") { tmpl_vehicle_4_views(2) }
+// Gammel (før 2004)
+spriteset(set_ic3_old_mfa, "gfx/ic3_old.png") { tmpl_vehicle_8_views(0, 0) }
+spriteset(set_ic3_old_mfb, "gfx/ic3_old.png") { tmpl_vehicle_8_views(1, 0) }
+spriteset(set_ic3_old_ff,  "gfx/ic3_old.png") { tmpl_vehicle_4_views(2) }
+spriteset(set_ic3_old_purchase, "gfx/ic3_old.png") { tmpl_vehicle_single(3, 93, 14, -45, -7) }
 
-// IC3 purchase
-spriteset(set_ic3_purchase, "gfx/ic3.png") { tmpl_vehicle_single(3, 93, 14, -45, -7) }
+// Del 1 (MFA)
+switch(FEAT_TRAINS, SELF, sw_ic3_mfa_graphics, build_year) {
+    0..2003: return set_ic3_old_mfa;
+    return set_ic3_new_mfa;
+}
 
-// IC3 articulated train (MFA-FF-MFB)
+// Del 2 (FF)
+switch(FEAT_TRAINS, SELF, sw_ic3_ff_graphics, build_year) {
+    0..2003: return set_ic3_old_ff;
+    return set_ic3_new_ff;
+}
+
+// Del 3 (MFB)
+switch(FEAT_TRAINS, SELF, sw_ic3_mfb_graphics, build_year) {
+    0..2003: return set_ic3_old_mfb;
+    return set_ic3_new_mfb;
+}
+
+// Hoved-switch vælger hvilken del i sammenstøkket (consist) der skal vises
+switch(FEAT_TRAINS, SELF, sw_ic3_graphics, position_in_consist % 3) {
+    0: return sw_ic3_mfa_graphics;
+    1: return sw_ic3_ff_graphics;
+    2: return sw_ic3_mfb_graphics;
+}
+// === Vælg korrekt purchase-sprite ===
+switch(FEAT_TRAINS, SELF, sw_ic3_purchase_graphics, current_date) {
+    date(1989,1,1) .. date(2003,12,31): return set_ic3_old_purchase;
+    return set_ic3_new_purchase;
+}
+
+// === Articulation, attach, osv. (samme som før) ===
 switch(FEAT_TRAINS, SELF, sw_ic3_articulated_part, extra_callback_info1) {
 	1: return item_train_ic3_mid;
 	2: return item_train_ic3_end;
@@ -78,11 +110,7 @@ switch(FEAT_TRAINS, SELF, sw_ic3_can_attach_wagon, vehicle_type_id) {
 	return string(STR_IC3_CANNOT_ATTACH_OTHER);
 }
 
-switch(FEAT_TRAINS, SELF, sw_ic3_default, position_in_consist % 3) {
-	0:      set_mfa;
-    2:      set_mfb;
-    set_ff;
-}// K engine
+// K engine
 spriteset(set_k, "gfx/k.png") { tmpl_vehicle_8_views(0, 0) }
 
 // K tender
@@ -124,7 +152,7 @@ spriteset(set_my_wine, "gfx/diesel.png") { tmpl_vehicle_8_views(3, 0) }
 spriteset(set_my_80, "gfx/diesel.png") { tmpl_vehicle_8_views(0, 0) }
 
 
-switch(FEAT_TRAINS, SELF, sw_my_graphics, build_year + (age_in_days / 365)) {
+switch(FEAT_TRAINS, SELF, sw_my_graphics, build_year) {
 	0..1979:	return set_my_wine;
 	set_my_80;
 }
@@ -133,7 +161,7 @@ spriteset(set_mz_wine, "gfx/diesel.png") { tmpl_vehicle_8_views(4, 0) }
 spriteset(set_mz_80, "gfx/diesel.png") { tmpl_vehicle_8_views(1, 0) }
 
 
-switch(FEAT_TRAINS, SELF, sw_mz_graphics, build_year + (age_in_days / 365)) {
+switch(FEAT_TRAINS, SELF, sw_mz_graphics, build_year) {
 	0..1979:	return set_mz_wine;
 	set_mz_80;
 }
@@ -360,11 +388,11 @@ item(FEAT_TRAINS, item_wagon_fc) {
 	}
 
 	graphics {
-		purchase:				set_ic3_purchase;
+		purchase:				sw_ic3_purchase_graphics;
 		articulated_part:		sw_ic3_articulated_part;
 		start_stop:				sw_ic3_start_stop;
 		can_attach_wagon:		sw_ic3_can_attach_wagon;
-		default:				sw_ic3_default;
+		default:				sw_ic3_graphics;
 	}
 }// K
 // Midtervogn (FF)
@@ -384,7 +412,7 @@ item(FEAT_TRAINS, item_train_ic3_mid) {
     }
 
 	graphics {
-		default:				sw_ic3_default;
+		default:				sw_ic3_graphics;
 	}
 }
 
@@ -405,7 +433,7 @@ item(FEAT_TRAINS, item_train_ic3_end) {
     }
 
 	graphics {
-		default:				sw_ic3_default;
+		default:				sw_ic3_graphics;
 	}
 }//K
 item(FEAT_TRAINS, item_train_engine_k) {
