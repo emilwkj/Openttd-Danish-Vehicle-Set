@@ -1,4 +1,6 @@
-# openttd-dsb
+# Danish vehicle set for openttd
+## This is a fork of the original openttd-dsb by @jeppeburchardt
+
 Danish (DSB) trainset for OpenTTD
 
 ![screenshot](https://raw.github.com/kosmobot/openttd-dsb/master/scereenshot.png)
