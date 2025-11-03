@@ -30,12 +30,14 @@ switch(FEAT_TRAINS, SELF, sw_ic3_mfb_graphics, build_year) {
     return set_ic3_new_mfb;
 }
 
+/*
 // Hoved-switch vælger hvilken del i sammenstøkket (consist) der skal vises
 switch(FEAT_TRAINS, SELF, sw_ic3_graphics, position_in_consist % 3) {
     0: return sw_ic3_mfa_graphics;
     1: return sw_ic3_ff_graphics;
     2: return sw_ic3_mfb_graphics;
 }
+*/
 // === Vælg korrekt purchase-sprite ===
 switch(FEAT_TRAINS, SELF, sw_ic3_purchase_graphics, current_date) {
     date(1989,1,1) .. date(2003,12,31): return set_ic3_old_purchase;
@@ -54,6 +56,7 @@ switch(FEAT_TRAINS, SELF, sw_ic3_start_stop, num_vehs_in_consist) {
 }
 switch(FEAT_TRAINS, SELF, sw_ic3_can_attach_wagon, vehicle_type_id) {
 	item_train_engine_ic3: return CB_RESULT_ATTACH_ALLOW;
+    item_train_engine_ir4: return CB_RESULT_ATTACH_ALLOW;
 	return string(STR_IC3_CANNOT_ATTACH_OTHER);
 }
 

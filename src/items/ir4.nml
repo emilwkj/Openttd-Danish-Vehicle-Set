@@ -1,0 +1,102 @@
+item(FEAT_TRAINS, item_train_engine_ir4) {
+	
+	property {
+		name: string(ITEM_NAME_IR4);
+		
+		climates_available: 	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+		introduction_date: 		date(1993, 1, 1);
+		model_life: 			VEHICLE_NEVER_EXPIRES;
+		vehicle_life: 			30;
+		reliability_decay: 		20;
+		tractive_effort_coefficient: 0.35;
+		
+		track_type:				ELRL;
+		engine_class:			ENGINE_CLASS_ELECTRIC;
+		running_cost_base:		RUNNING_COST_ELECTRIC;
+		running_cost_factor:	150;
+		dual_headed:			0;
+		length:					8;
+
+		loading_speed: 			6;
+		cost_factor: 			20;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		speed: 					180 km/h;
+		power:					1680 kW;
+		weight:					133 ton;
+
+		default_cargo_type:		PASS;
+		cargo_capacity:			50;
+		extra_weight_per_wagon: 0 ton;
+		bitmask_vehicle_info:   0;
+
+		visual_effect_and_powered:	visual_effect_and_powered(VISUAL_EFFECT_DIESEL, 2, DISABLE_WAGON_POWER);
+	}
+
+	graphics {
+		purchase:				sw_ir4_purchase_graphics;
+		articulated_part:		sw_ir4_articulated_part;
+		start_stop:				sw_ir4_start_stop;
+		can_attach_wagon:		sw_ir4_can_attach_wagon;
+		default:				sw_ir4_er20_graphics;
+	}
+}// K
+// Midtervogn (FR22)
+item(FEAT_TRAINS, item_train_ir4_fr22) {
+    property {
+        name: string(ITEM_NAME_IR4_FR22);
+        default_cargo_type: PASS;
+        cargo_capacity: 60;                 // realistisk antal
+        power: 0;
+        weight: 35 ton;
+        running_cost_base: RUNNING_COST_NONE;
+        running_cost_factor: 0;
+		length: 8;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		track_type:				ELRL;
+    }
+
+	graphics {
+		default:				sw_ir4_fr22_graphics;
+	}
+}
+
+
+// Midtervogn (FR22)
+item(FEAT_TRAINS, item_train_ir4_fr23) {
+    property {
+        name: string(ITEM_NAME_IR4_FR23);
+        default_cargo_type: PASS;
+        cargo_capacity: 60;                 // realistisk antal
+        power: 0;
+        weight: 35 ton;
+        running_cost_base: RUNNING_COST_NONE;
+        running_cost_factor: 0;
+		length: 8;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		track_type:				ELRL;
+    }
+
+	graphics {
+		default:				sw_ir4_fr23_graphics;
+	}
+}
+
+// Bagvogn (MFB)
+item(FEAT_TRAINS, item_train_ir4_er21) {
+    property {
+        name: string(ITEM_NAME_IR4_END);
+        default_cargo_type: PASS;
+        cargo_capacity: 40;
+        power: 0;
+        weight: 30 ton;
+        running_cost_base: RUNNING_COST_NONE;
+        running_cost_factor: 0;
+		length: 8;
+		sprite_id: 				SPRITE_ID_NEW_TRAIN;
+		track_type:				ELRL;        
+    }
+
+	graphics {
+		default:				sw_ir4_er21_graphics;
+	}
+}

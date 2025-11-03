@@ -18,6 +18,10 @@ ITEM_NAME_STOG2	:S-train 2nd gen (Electric)
 ITEM_NAME_IC3	:IC3 Inter City (Diesel)
 ITEM_NAME_IC3_MID : "IC3 mid car"
 ITEM_NAME_IC3_END : "IC3 end car"
+ITEM_NAME_IR4   : IR4 Inter City (Electric)
+ITEM_NAME_IR4_FR22 : IR4 First mid car
+ITEM_NAME_IR4_FR23  : IR4 Second mid car
+ITEM_NAME_IR4_END   : IR4 End car
 
 # wagons
 ITEM_NAME_B		:Class B (I)
@@ -30,3 +34,5 @@ STR_IC3_CANNOT_START	:... train too long (max. 4 coupled EMUs).
 STR_IC3_CANNOT_ATTACH_OTHER  :... only other IC3s can be attached to IC3.
 STR_STOG2_CANNOT_START	:... train too long (max. 3 coupled EMUs).
 STR_STOG2_CANNOT_ATTACH_OTHER  :... only other S-TOG can be attached to S-TOG.
+STR_IR4_CANNOT_START    :... train too long (max. 4 coupled EMUs).
+STR_IR4_CANNOT_ATTACH_OTHER :... only other IC3s can be attached to IC3.

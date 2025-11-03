@@ -38,7 +38,7 @@ item(FEAT_TRAINS, item_train_engine_ic3) {
 		articulated_part:		sw_ic3_articulated_part;
 		start_stop:				sw_ic3_start_stop;
 		can_attach_wagon:		sw_ic3_can_attach_wagon;
-		default:				sw_ic3_graphics;
+		default:				sw_ic3_mfa_graphics;
 	}
 }// K
 // Midtervogn (FF)
@@ -54,11 +54,10 @@ item(FEAT_TRAINS, item_train_ic3_mid) {
 		length: 8;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		track_type:				RAIL;
-		engine_class: ENGINE_CLASS_DIESEL;
     }
 
 	graphics {
-		default:				sw_ic3_graphics;
+		default:				sw_ic3_ff_graphics;
 	}
 }
 
@@ -75,10 +74,9 @@ item(FEAT_TRAINS, item_train_ic3_end) {
 		length: 8;
 		sprite_id: 				SPRITE_ID_NEW_TRAIN;
 		track_type:				RAIL;
-		engine_class: ENGINE_CLASS_DIESEL;
     }
 
 	graphics {
-		default:				sw_ic3_graphics;
+		default:				sw_ic3_mfb_graphics;
 	}
 }

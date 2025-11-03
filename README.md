@@ -20,7 +20,7 @@ Danish (DSB) trainset for OpenTTD
 
 * Electrical
  * Litra EA
- * IR4 Litra ER
+ * ~~IR4 Litra ER~~ - Done, 03/11/2025
 
 * Passenger
  * ~~Litra AB~~
